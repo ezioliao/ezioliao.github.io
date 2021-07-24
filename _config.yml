@@ -217,7 +217,7 @@ tip:
 ## If there is no effect after modification, please empty the cache and try again.
 ## ⚠️ The following special effects will take up a lot of cpu resorces, please open it carefully.
 bg_effects:
-  enable: true
+  enable: false
   line:
     enable: false
     color: 129,200,61
