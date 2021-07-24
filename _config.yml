@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Super Snail
-subtitle: At the bottom of the well, it is destined to see only the sky at the wellhead. 
-          However, the starting point only affects the process of reaching your peak and does not determine the height you reach.
-author: Dusign
+title: God Melon
+subtitle: 天下熙熙，皆为利来；天下攘攘，皆为利往。
+  --凡事预则立，不预则废。人一能之，己十之，人百能之，己千之。
+author: ezioliao
 language: en
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://dusign.net       # Note: don't forget to modify the CNAME file to your url
+url: https://godmelon.com       # Note: don't forget to modify the CNAME file to your url
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -52,7 +52,6 @@ widgets:
 - search
 - featured-tags
 - short-about
-- visitor
 - recent-posts
 - friends-blog
 - archive
@@ -149,7 +148,7 @@ archive_generator:
   yearly: true
   monthly: true
   daily: false
-  
+
 # Markdown-it config
 ## Docs: https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki
 markdown:
@@ -160,7 +159,7 @@ markdown:
     linkify: true
     typographer: true
     quotes: '“”‘’'
-  
+
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
