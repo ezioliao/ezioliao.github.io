@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: God Melon
+title: Melon Park
 subtitle: 天下熙熙，皆为利来；天下攘攘，皆为利往。
   --凡事预则立，不预则废。人一能之，己十之，人百能之，己千之。
 author: ezioliao
@@ -46,7 +46,7 @@ ga_domain: yoursite
 
 # Sidebar settings
 sidebar: true                      # whether or not using Sidebar.
-sidebar-about-description: "Welcome to visit, I'm Dusign!"
+sidebar-about-description: "Welcome to visit melon park, I'm ezioliao!"
 sidebar-avatar: img/ironman-draw.png      # use absolute URL, seeing it's used in both `/` and `/about/`
 widgets:
 - search
