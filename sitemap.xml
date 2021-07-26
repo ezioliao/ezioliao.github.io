@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://godmelon.com/2021/07/25/golang-plan9-sam/</loc>
+    
+    <lastmod>2021-07-26T16:16:02.418Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://godmelon.com/tags/index.html</loc>
     
     <lastmod>2021-07-24T09:06:41.968Z</lastmod>
