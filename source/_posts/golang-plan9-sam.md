@@ -10,17 +10,15 @@ date: 2021-07-25 17:03:14
 subtitle:
 tags:
 - golang
-- 汇编
 categories: tech
 
 ---
-# 深入理解golang汇编
 
-## 什么是plan9汇编
+# 什么是plan9汇编
 Plan9 汇编语言是 Plan9 操作系统的汇编器支持的汇编语言。虽然plan9 OS并不算成功，但因为Golang的开发团队和Plan9 OS的团队基本差不多，golang选择Plan9汇编也就情有可原了。
 
 Plan9汇编基本沿用的是用AT&T格式。
-## 常量与全局变量
+# 常量与全局变量
 定义变量一般需要俩个步骤，分别是定义和赋值(因为go中所有变量都是初始化了的).
 其中定义的语法是：
 ```
@@ -32,7 +30,7 @@ DATA symbol+offset(SB)/width, value
 ```
 这里`offset`是相对`symbol`的偏移，`width`是这次被赋值的内存长度，`value`是值。
 
-### 常量
+## 常量
 Go汇编语言中常量以$美元符号为前缀。常量的类型有整数常量、浮点数常量、字符常量和字符串常量等几种类型。以下是几种类型常量的例子：
 ```
 $1           // 十进制
@@ -44,18 +42,18 @@ $"abcd"      // 字符串
 
 字符串常量标识为：
 ```
-# 先定义gopher字符串
+ 先定义gopher字符串
 GLOBL ·NameData(SB),$8
 DATA  ·NameData(SB)/8,$"gopher"
 
-# 然后赋值字符串的地址和长度
+ 然后赋值字符串的地址和长度
 GLOBL ·Name(SB),$16
 DATA  ·Name+0(SB)/8,$·NameData(SB)
 DATA  ·Name+8(SB)/8,$6
 ```
 其中`$·NameData(SB)`可以看作是地址常量
 
-### 全局变量
+## 全局变量
 变量根据作用域和生命周期有全局变量和局部变量之分。
 > * 全局变量一般有着较为固定的内存地址，声明周期跨越整个程序运行时间。
 > * 局部变量一般是函数内定义的的变量，只有在函数被执行的时间才被在栈上创建，当函数调用完成后将回收（暂时不考虑闭包对局部变量捕获的问题）。
@@ -65,8 +63,7 @@ DATA  ·Name+8(SB)/8,$6
 GLOBL symbol(SB), width
 ```
 GLOBL汇编指令用于定义名为symbol的变量，变量对应的内存宽度为width(内存的宽度必须是**2的指数倍**，编译器最终会保证变量的真实地址对齐到机器字倍数)，内存宽度部分必须用常量初始化。
->
-需要注意的是，在Go汇编中我们无法为count变量指定具体的类型。在汇编中定义全局变量时，我们只关心变量的名字和内存大小，变量最终的类型只能在Go语言中声明。
+> 需要注意的是，在Go汇编中我们无法为count变量指定具体的类型。在汇编中定义全局变量时，我们只关心变量的名字和内存大小，变量最终的类型只能在Go语言中声明。
 
 变量定义之后，我们可以通过DATA汇编指令指定对应内存中的数据，语法如下：
 ```
@@ -85,7 +82,7 @@ DATA ·count+3(SB)/1,$4
 
 DATA ·count+0(SB)/4,$0x04030201 #注意x86是小端
 ```
-### 更多go类型示例
+## 更多go类型示例
 - **int型变量**
     ```
     GLOBL ·int32Value(SB),$4     // var int32Value int32
@@ -162,7 +159,7 @@ GLOBL ·ch(SB),$8 // var ch chan int
 DATA  ·ch+0(SB)/8,$0
     ```
 
-### 内存布局
+## 内存布局
 下图是代码段的内存布局
 ```
 GLOBL ·num(SB),$16
@@ -171,8 +168,8 @@ DATA ·num+8(SB)/8,$0
 ```
 ![内存布局][1]
 
-## 函数
-### 基本语法
+# 函数
+## 基本语法
 函数的定义的语法如下：
 ```
 TEXT [pkg]·symbol(SB), [flags,] $framesize[-argsize]
@@ -186,7 +183,7 @@ TEXT [pkg]·symbol(SB), [flags,] $framesize[-argsize]
 
 作为全局标识符的全局函数，和全局变量一样，名字一般都是基于SB伪寄存器的相对地址。
 
-### 伪寄存器
+## 伪寄存器
 Plan9提供了4个伪寄存器，之所以是"伪"，是因为这几个寄存器是不存在的，都是编译器根据其它真实的物理寄存器给推导出来的。这4个伪寄存器对Plan9汇编函数来说很重要，参数、返回值、局部变量都是依赖这4个伪寄存器的。4个伪寄存器的官方定义如下：
 
 - FP: Frame pointer: arguments and locals.
@@ -255,7 +252,7 @@ Plan9提供了4个伪寄存器，之所以是"伪"，是因为这几个寄存器
                        +---------------+
 ```
 
-### 汇编函数示例
+## 汇编函数示例
 **示例一**
 math.go:
 ```
@@ -364,6 +361,6 @@ frame content (8 bytes)
   [1]: https://common-1256796170.cos.ap-nanjing.myqcloud.com/blog/melon_park/asm_go_mem_layout.png
 
 
-## 参考
+# 参考
 https://chai2010.cn/advanced-go-programming-book/ch3-asm/ch3-04-func.html
 https://xargin.com/plan9-assembly/

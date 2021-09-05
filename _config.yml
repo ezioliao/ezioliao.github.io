@@ -247,5 +247,5 @@ visitor:
 
 # Chinese Blog
 chinese_blog:
-  enable: true
+  enable: false
   url: YOUR_CHINESE_BLOG_URL
